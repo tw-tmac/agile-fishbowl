@@ -1,0 +1,41 @@
+---
+- hosts: AppServer
+  tasks:
+   - name: add ruby 2.1 to the repo
+     apt_repository: repo='ppa:brightbox/ruby-ng' update_cache=yes
+     sudo: yes
+   
+   - name: install all the required packages
+     sudo: yes
+     apt: name={{item}} 
+     with_items:
+        - curl
+        - git
+        - vim
+        - build-essential 
+        - zlib1g-dev 
+        - libssl-dev 
+        - libreadline6-dev 
+        - libyaml-dev
+        - python-software-properties
+        - ruby2.1 
+        - ruby2.1-dev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
