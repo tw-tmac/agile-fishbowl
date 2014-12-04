@@ -1,5 +1,6 @@
-require 'sinatra'
-require 'haml'
+require 'bundler'
+
+Bundler.require
 
 get '/' do
 	@var = "This is a variable from somewhere else"
