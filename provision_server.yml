@@ -20,6 +20,8 @@
         - python-software-properties
         - ruby2.1 
         - ruby2.1-dev
+        - postgresql 
+        - postgresql-contrib
 
 
 
