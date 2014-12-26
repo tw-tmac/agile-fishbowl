@@ -22,10 +22,12 @@
         - ruby2.1-dev
         - postgresql 
         - postgresql-contrib
-	- libpq-dev
-	- postgresql-server-dev-9.3
+    	- libpq-dev
+	    - postgresql-server-dev-9.3
 
-
+#todo
+# install bundler gem
+# set chmod o+rx -R /var/lib/gems
 
 
 
