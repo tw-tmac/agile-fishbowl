@@ -1,7 +1,3 @@
-path = File.expand_path("../", __FILE__)
+require './agile_fishbowl'
 
-require 'rubygems'
-require 'sinatra'
-require "#{path}/agile_fishbowl"
-
-run Sinatra::Application
+run AgileFishbowl

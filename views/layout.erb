@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>BC Agile Fishbowl</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -21,49 +21,92 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
+
   </head>
 
   <body>
-
+        <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
+    
       <div class="container">
+      
         <div class="navbar-header">
+
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">BC Geek Night</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div <% if flash[:success] %>style="display:none"<% end %>>
+            <form name="login" class="navbar-form navbar-right" action="/auth/login" method="post" >
+              <div class="form-group" >
+                <input name="user[username]" type="text" placeholder="Username" class="form-control">
+              </div>
+              <div class="form-group">
+                <input name="user[password]" type="password" placeholder="Password" class="form-control">
+              </div>
+              <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+          </div>
+          <% if flash[:success] %>
+            <div class="navbar-form navbar-right"><button onclick="window.location.href='/logout'" class="btn btn-success">Sign off</button></div>
+          <% end %>
+        </div><!--/.nav-collapse -->
 
-      <%=yield%>
+      </div>
+      <% if flash[:error] %>
+      <div id="flash" style="color:red;">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+    </nav>
+      <%= yield %>
       <hr>
 
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; Thoughtworks 2014</p>
       </footer>
     </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+        <script>
+    $(document).ready(function() {
+  if ($("#flash").length) {
+    // Hide the flash in a few seconds
+    setTimeout(function() {
+      $("#flash").remove()
+    }, 2000)
+  }
+});
+    </script>
+
+
   </body>
 </html>

@@ -1,9 +1,19 @@
 require 'bcrypt'
+
+$DB_USERNAME = "twer"
+$DB_PASSWORD = "Thought01"
+$DB_NAME = "agile-fishbowl"
+$DB_HOST = "localhost"
+
+$DATABASE_URL = "postgres://#{$DB_USERNAME}:#{$DB_PASSWORD}@#{$DB_HOST}/#{$DB_NAME}"
+DataMapper::Logger.new($stdout, :debug)
+DataMapper::setup(:default, $DATABASE_URL)
+
 class User
 
   include DataMapper::Resource
-  property :id, Serial
-  property :username, Text
+  property :id, Serial, key: true
+  property :username, Text, length: 128
   property :password, BCryptHash
 
   def authenticate(attempted_password)
