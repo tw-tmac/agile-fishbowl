@@ -21,7 +21,7 @@ $test = "blah"
 	    config.scope_defaults :default,
 	      strategies: [:password],
 	      action: 'auth/unauthenticated'
-	      
+
 	    config.failure_app = self
 	  end
 
@@ -65,14 +65,22 @@ $test = "blah"
 	    redirect '/'
 	  end
 
-post '/auth/unauthenticated' do
-    session[:return_to] = env['warden.options'][:attempted_path] if session[:return_to].nil?
-    puts env['warden.options'][:attempted_path]
-    puts env['warden']
-    flash[:error] = "Invalid username or password"
-    redirect '/'
-  end
+	post '/auth/unauthenticated' do
+	    session[:return_to] = env['warden.options'][:attempted_path] if session[:return_to].nil?
+	    puts env['warden.options'][:attempted_path]
+	    puts env['warden']
+	    flash[:error] = "Invalid username or password"
+	    redirect '/'
+ 	end
 
+ 	get '/admin/event' do
+ 		if env['warden'].authenticated?
+ 			erb :event
+ 		else
+ 			flash[:error] = "Please login"
+ 			redirect '/'
+ 		end
+ 	end
 
 	set :bind, '0.0.0.0'
 

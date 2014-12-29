@@ -5,14 +5,15 @@ $DB_PASSWORD = "Thought01"
 $DB_NAME = "agile-fishbowl"
 $DB_HOST = "localhost"
 
-$DATABASE_URL = "postgres://#{$DB_USERNAME}:#{$DB_PASSWORD}@#{$DB_HOST}/#{$DB_NAME}"
+$LOCAL_DEV_DATABASE_URL = "postgres://#{$DB_USERNAME}:#{$DB_PASSWORD}@#{$DB_HOST}/#{$DB_NAME}"
 
 DataMapper::Logger.new($stdout, :debug)
 
-#Uncomment this line for local
-#DataMapper::setup(:default, DATABASE_URL)
-
 #This variable is set through Heroku
+if(ENV['DATABASE_URL'].nil?)
+  ENV['DATABASE_URL'] = $LOCAL_DEV_DATABASE_URL
+end
+
 DataMapper::setup(:default, ENV['DATABASE_URL'])
 
 class User
