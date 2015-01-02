@@ -13,4 +13,4 @@ mkdir -p $GEM_HOME
  
 cd $RAILS_ROOT
  
-gem install sinatra dm-core dm-migrations dm-types dm-aggregates
+gem install --no-ri --no-rdoc sinatra dm-core dm-migrations dm-types dm-aggregates
