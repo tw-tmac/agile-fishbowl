@@ -1,5 +1,8 @@
 require 'rubygems'
 require 'dm-core'
+require 'dm-migrations'
+require 'dm-types'
+require 'dm-aggregates'
 
 $DB_USERNAME = "twer"
 $DB_PASSWORD = "Thought01"

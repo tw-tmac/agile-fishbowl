@@ -1,10 +1,4 @@
 namespace :db do
-  require 'rubygems'
-  require 'sinatra'
-  require 'dm-core'
-  require 'dm-migrations'
-  require 'dm-types'
-  require 'dm-aggregates'
   require './config/database'
 
   #THIS WILL DESTROY THE DATABASE!
