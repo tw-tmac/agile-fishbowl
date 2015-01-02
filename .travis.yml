@@ -1,0 +1,7 @@
+deploy:
+  provider: heroku
+  api_key:
+    secure: bV9HVYzZ6HvbWY1QqQmFm96quilylQ6gzjsOyY/PsOvi19oEdLDGvhtiV45oFn3phIttuCwuFNrIOpYwGbOjBqfy0+GHoLXT/lRSehxwaL1TwD4Z4srdMS4cl6M51IH+AFmvx+ySuvs6OOQwlj0GgRsLFy3/iqSrMcQApLLIaog=
+  app: bc-geeknight
+  on:
+    repo: tw-tmac/agile-fishbowl
