@@ -16,6 +16,8 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/jumbotron.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -45,15 +47,13 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">Subscribe</a></li>
           <% if env['warden'].authenticated? %>  
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/admin/event">Manage events</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Manage subscribtions</a></li>
               </ul>
             </li>
           <% end %>
@@ -89,14 +89,12 @@
           <div class="blog-post">
             <%= yield %>
           </div><!-- /.blog-post -->
-          <% if !env['warden'].authenticated? %>
           <nav>
             <ul class="pager">
               <li><a href="#">Previous</a></li>
               <li><a href="#">Next</a></li>
             </ul>
           </nav>
-         <% end %>
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
@@ -146,15 +144,26 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-        <script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
+    <script>
+  
     $(document).ready(function() {
-  if ($("#flash").length) {
-    // Hide the flash in a few seconds
-    setTimeout(function() {
-      $("#flash").remove()
-    }, 2000)
-  }
-});
+      if ($("#flash").length) {
+        // Hide the flash in a few seconds
+        setTimeout(function() {
+          $("#flash").remove()
+        }, 2000)
+      }
+    });
+
+    $(function() {
+    $( "#datepicker" ).datepicker();
+    $( "#anim" ).change(function() {
+      $( "#datepicker" ).datepicker( "option", "showAnim", "slideDown");
+    });
+  });
     </script>
 
 

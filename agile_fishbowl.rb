@@ -1,9 +1,8 @@
 require 'bundler'
 Bundler.require
+require './config/database'
 
-require './user'
-$test = "blah"
-	enable :sessions
+enable :sessions
 
  class AgileFishbowl < Sinatra::Base
 
