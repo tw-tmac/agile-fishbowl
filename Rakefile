@@ -29,3 +29,21 @@ namespace :db do
  
   end    
 end
+
+namespace :deploy do
+  desc 'Deploy the app to Heroku'
+  task :production do
+    app = "bc-geeknight"
+    remote = "git@heroku.com:#{app}.git"
+
+    system "heroku maintenance:on --app #{app}"
+    system "git push #{remote} master"
+    system "heroku run rake db:upgrade --app #{app}"
+    system "heroku maintenance:off --app #{app}"
+  end
+
+  desc 'Run the app locally'
+  task :local do
+    system "shotgun config.ru"
+  end
+end
