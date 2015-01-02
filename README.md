@@ -10,4 +10,4 @@ For mac setup
     > brew update && brew install ansible
 
 3) run "vagrant up"
-4) To start the app, run shotgun agile_fishbowl.rb
+4) To start the app, run rake deploy:local
