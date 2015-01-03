@@ -17,5 +17,5 @@ configure :development, :test do
 	DataMapper.setup(:default, conn_string)
 end
 
-require File.expand_path('../models/User', File.dirname(__FILE__))
+require File.expand_path('../models/user', File.dirname(__FILE__))
 
