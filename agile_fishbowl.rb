@@ -1,5 +1,7 @@
 require 'bundler'
+require 'yaml'
 Bundler.require
+
 require './config/database'
 
 enable :sessions
@@ -66,8 +68,6 @@ enable :sessions
 
 	post '/auth/unauthenticated' do
 	    session[:return_to] = env['warden.options'][:attempted_path] if session[:return_to].nil?
-	    puts env['warden.options'][:attempted_path]
-	    puts env['warden']
 	    flash[:error] = "Invalid username or password"
 	    redirect '/'
  	end
@@ -80,7 +80,7 @@ enable :sessions
  			redirect '/'
  		end
  	end
-
+#binding to any port useful for the vagrant box
 	set :bind, '0.0.0.0'
 
 end

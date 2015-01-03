@@ -1,18 +1,21 @@
 require 'rubygems'
+require 'sinatra'
 require 'dm-core'
 require 'dm-migrations'
 require 'dm-types'
 require 'dm-aggregates'
 
-$DB_USERNAME = "twer"
-$DB_PASSWORD = "Thought01"
-$DB_NAME = "agile-fishbowl"
-$DB_HOST = "localhost"
+ENV['RACK_ENV'] ||= 'development'
 
-$LOCAL_DEV_DATABASE_URL = "postgres://#{$DB_USERNAME}:#{$DB_PASSWORD}@#{$DB_HOST}/#{$DB_NAME}"
+configure :production do
+	DataMapper.setup(:default, ENV[DATABASE_URL])	
+end
 
-DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, ENV['DATABASE_URL'] || $LOCAL_DEV_DATABASE_URL)
+configure :development, :test do
+	settings = YAML::load_file('config/database.yml')
+	conn_string = settings[ENV['RACK_ENV']]
+	DataMapper.setup(:default, conn_string)
+end
 
 require './models/User'
 

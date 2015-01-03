@@ -1,6 +1,17 @@
 language: ruby
 rvm:
   - 2.1.0
+
+addons:
+  postgresql: "9.3"
+
+before_install: 
+  - sudo apt-get update -qq 
+  - sudo apt-get install -qq postgresql-server-dev-9.3 
+
+# before_script:
+#   - psql -c 'create database agile-fishbowl_test;' -U postgres
+
 deploy:
   provider: heroku
   api_key:
