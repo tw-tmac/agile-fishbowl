@@ -8,7 +8,7 @@ require 'dm-aggregates'
 ENV['RACK_ENV'] ||= 'development'
 
 configure :production do
-	DataMapper.setup(:default, ENV[DATABASE_URL])	
+	DataMapper.setup(:default, ENV['DATABASE_URL'])	
 end
 
 configure :development, :test do
