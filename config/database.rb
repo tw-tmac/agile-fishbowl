@@ -17,5 +17,5 @@ configure :development, :test do
 	DataMapper.setup(:default, conn_string)
 end
 
-require './models/User'
+require 'models/User'
 
