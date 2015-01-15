@@ -1,5 +1,6 @@
 namespace :db do
-  require './config/database'
+  require File.expand_path('config/database', File.dirname(__FILE__))
+
 
   #THIS WILL DESTROY THE CURRENT DATA!
   desc "Migrate the database"
@@ -19,11 +20,4 @@ namespace :db do
     user.password = "admin"
     user.save
   end    
-end
-
-namespace :deploy do
-  desc 'Run the app locally'
-  task :local do
-    system "shotgun config.ru"
-  end
 end

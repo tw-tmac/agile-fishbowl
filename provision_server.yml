@@ -1,34 +1,43 @@
 ---
-- hosts: AppServer
+- hosts: all
   tasks:
-   - name: add ruby 2.1 to the repo
-     apt_repository: repo='ppa:brightbox/ruby-ng' update_cache=yes
-     sudo: yes
-   
+
    - name: install all the required packages
      sudo: yes
-     apt: name={{item}} 
+     yum: name={{item}} state=present
      with_items:
+        - ruby
+        - ruby-devel
+        - postgresql-server
+        - postgresql-devel
         - curl
-        - git
-        - vim
-        - build-essential 
-        - zlib1g-dev 
-        - libssl-dev 
-        - libreadline6-dev 
-        - libyaml-dev
-        - python-software-properties
-        - ruby2.1 
-        - ruby2.1-dev
-        - postgresql 
+        - rubygem-bundler
+        - rubygem-nokogiri
+        - python-psycopg2
         - postgresql-contrib
-    	- libpq-dev
-	    - postgresql-server-dev-9.3
 
-#todo
-# install bundler gem
-# set chmod o+rx -R /var/lib/gems
+  # Database
+   - name: enable postgresql
+     command: systemctl enable postgresql
+     sudo: true
 
+   - name: initialize postgresql
+     command: /usr/bin/postgresql-setup initdb creates=/var/lib/pgsql/data/postgresql.conf
+     sudo: true
+
+   - name: start postgresql
+     service: state=started name=postgresql
+     sudo: true
+
+   - name: set username and password for database
+     postgresql_user: db=agile-fishbowl name=twer password=Thought01 priv=ALL state=present role_attr_flags=CREATEDB,NOSUPERUSER,LOGIN
+     sudo_user: postgres
+     sudo: true
+     
+   - name: create dev database
+     postgresql_db: name=agile-fishbowl state=present login_user=twer
+     sudo_user: postgres
+     sudo: true
 
 
 
