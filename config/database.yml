@@ -1,8 +1,7 @@
 development:
   adapter: postgres
   host: localhost
-  username: twer
-  password: Thought01
+  username: postgres
   database: agile-fishbowl
 
 test:

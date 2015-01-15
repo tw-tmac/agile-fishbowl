@@ -28,16 +28,16 @@
    - name: start postgresql
      service: state=started name=postgresql
      sudo: true
-
-   - name: set username and password for database
-     postgresql_user: db=agile-fishbowl name=twer password=Thought01 priv=ALL state=present role_attr_flags=CREATEDB,NOSUPERUSER,LOGIN
-     sudo_user: postgres
-     sudo: true
      
    - name: create dev database
-     postgresql_db: name=agile-fishbowl state=present login_user=twer
+     postgresql_db: name=agile-fishbowl state=present user=postgres
      sudo_user: postgres
      sudo: true
+   
+#   - name: set username and password for database
+#     postgresql_user: db=agile-fishbowl name=twer password=Thought01 priv=ALL state=present role_attr_flags=CREATEDB,SUPERUSER,LOGIN
+#     sudo_user: postgres
+#     sudo: true
 
 
 
