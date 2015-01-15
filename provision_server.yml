@@ -25,19 +25,23 @@
      command: /usr/bin/postgresql-setup initdb creates=/var/lib/pgsql/data/postgresql.conf
      sudo: true
 
+   - name: copy updated pg_hba.conf file
+     copy: src=files/pg_hba.conf dest=/var/lib/pgsql/data/pg_hba.conf
+     sudo: true
+
    - name: start postgresql
      service: state=started name=postgresql
      sudo: true
-     
+
    - name: create dev database
-     postgresql_db: name=agile-fishbowl state=present user=postgres
+     postgresql_db: name=agile-fishbowl state=present
      sudo_user: postgres
      sudo: true
-   
-#   - name: set username and password for database
-#     postgresql_user: db=agile-fishbowl name=twer password=Thought01 priv=ALL state=present role_attr_flags=CREATEDB,SUPERUSER,LOGIN
-#     sudo_user: postgres
-#     sudo: true
+
+   - name: set username and password for database
+     postgresql_user: db=agile-fishbowl name=twer password=Thought01 priv=ALL state=present role_attr_flags=CREATEDB,CREATEROLE,SUPERUSER
+     sudo_user: postgres
+     sudo: true
 
 
 

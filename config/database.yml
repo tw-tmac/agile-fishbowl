@@ -1,7 +1,7 @@
 development:
   adapter: postgres
   host: localhost
-  username: postgres
+  username: twer
   database: agile-fishbowl
 
 test:

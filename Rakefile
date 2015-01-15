@@ -19,5 +19,10 @@ namespace :db do
     user.username = "admin"
     user.password = "admin"
     user.save
-  end    
+  end 
 end
+
+  desc "Start shotgun"
+  task :shotgun do
+    exec "shotgun --host 0.0.0.0 config.ru"
+  end 

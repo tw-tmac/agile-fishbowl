@@ -83,7 +83,7 @@ enable :sessions
 
  	get '/admin/all_events' do
  		if env['warden'].authenticated?
- 			@events = Event.all(:order => [ :date.desc ])
+ 			@events = Event.all(:order => [ :date.asc ])
  			erb :all_events
  		else
  			flash[:error] = "Please login"

@@ -4,4 +4,5 @@ class Event
   property :id, Serial, key: true
   property :name, String
   property :date, DateTime
+  property :description, Text
 end
