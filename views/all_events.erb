@@ -1,0 +1,13 @@
+
+
+<% @events.each do |event| %>
+	<h2 class="blog-post-title"><%= event.name %></h2>
+	<div>
+		<p class="blog-post-meta" style="font-weight: bold;"><%= event.date.strftime("%B %d, %Y") %></p>
+		<button id="edit" type="submit">Edit</button>
+		<button id="delete" type="submit">Delete</button>
+	</div>
+
+<% end %>
+
+<button id="edit" type="submit">Add New Event</button>

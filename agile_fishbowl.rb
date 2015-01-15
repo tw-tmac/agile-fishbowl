@@ -80,6 +80,17 @@ enable :sessions
  			redirect '/'
  		end
  	end
+
+ 	get '/admin/all_events' do
+ 		if env['warden'].authenticated?
+ 			@events = Event.all(:order => [ :date.desc ])
+ 			erb :all_events
+ 		else
+ 			flash[:error] = "Please login"
+ 			redirect '/'
+ 		end
+ 	end
+
 #binding to any port useful for the vagrant box
 	set :bind, '0.0.0.0'
 
