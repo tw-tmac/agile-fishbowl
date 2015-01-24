@@ -13,7 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css"/ >
     <!-- Custom styles for this template -->
     <link href="/css/jumbotron.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -52,7 +52,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/admin/all_events">Manage events</a></li>
+                <li><a href="/admin">Manage events</a></li>
                 <li><a href="#">Manage subscribtions</a></li>
               </ul>
             </li>
@@ -147,9 +147,11 @@
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
     <script>tinymce.init({selector:'textarea'});</script>
+    <script src="/js/jquery.datetimepicker.js"></script>
     <script>
   
     $(document).ready(function() {
+      jQuery('#date').datetimepicker();
       if ($("#flash").length) {
         // Hide the flash in a few seconds
         setTimeout(function() {
@@ -157,15 +159,6 @@
         }, 2000)
       }
     });
-
-    $(function() {
-    $( "#datepicker" ).datepicker();
-    $( "#anim" ).change(function() {
-      $( "#datepicker" ).datepicker( "option", "showAnim", "slideDown");
-    });
-  });
-    </script>
-
-
-  </body>
+  </script>
+</body>
 </html>

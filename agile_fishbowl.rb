@@ -81,10 +81,25 @@ enable :sessions
  		end
  	end
 
- 	get '/admin/all_events' do
+ 	post '/admin/event/add' do
+
+ 		if env['warden'].authenticated?
+			@event = Event.new(params)
+ 			 if @event.save
+ 			 	redirect '/admin', :notice => "Event has been added"
+ 			 else
+ 			 	redirect '/admin/event', :notice => "Uh oh, something went wrong!"
+ 			 end
+ 		else
+ 			flash[:error] = "Please login"
+ 			redirect '/'
+ 		end
+ 	end
+
+ 	get '/admin' do
  		if env['warden'].authenticated?
  			@events = Event.all(:order => [ :date.asc ])
- 			erb :all_events
+ 			erb :admin
  		else
  			flash[:error] = "Please login"
  			redirect '/'

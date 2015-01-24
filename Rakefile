@@ -3,7 +3,12 @@ namespace :db do
 
   desc "Migrate the database"
   task :migrate do
-    DataMapper.auto_upgrade
+    DataMapper.auto_upgrade!
+  end
+
+  desc "Upgrade DB schema. THIS WILL DESTROY INFORMATION"
+  task :upgrade do
+    DataMapper.auto_migrate!
   end
 
   desc "Add some test users"
