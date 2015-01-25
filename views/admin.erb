@@ -4,9 +4,11 @@
 	<div>
 		<p class="blog-post-meta" style="font-weight: bold;"><%= event.date.strftime("%B %d, %Y @ %H:%M") %></p>
 		<p class="blog-post-meta"><%= event.description %></p>
-		 
-		<button id="edit" type="submit"><a href="/admin/event/<%=event.id%>/edit">Edit</a></button>
+		<form action="/admin/event/<%= event.id %>" method="post" onsubmit="return confirm('Are you sure you want to delete?');">
+		<button id="edit"><a href="/admin/event/<%=event.id%>/edit">Edit</a></button>	
+		<input type="hidden" name="_method" value="delete"/>
 		<button id="delete" type="submit">Delete</button>
+		</form>
 	</div>
 
 <% end %>

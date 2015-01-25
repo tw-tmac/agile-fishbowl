@@ -118,6 +118,12 @@ enable :sessions, :method_override
 		  end
  	end
 
+ 	delete '/admin/event/:id' do | id |
+ 		event = Event.get!(id)
+ 		event.destroy!
+ 		redirect "/admin"
+ 	end
+
  	get '/admin' do
  		if env['warden'].authenticated?
  			@events = Event.all(:order => [ :date.asc ])
