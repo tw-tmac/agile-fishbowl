@@ -1,6 +1,8 @@
             <h2 class="blog-post-title">The next upcoming geek night is on...</h2>
+            <% if !@events.nil? %>
             <p class="blog-post-meta"><%=@events.date.strftime("%B %d, %Y @ %H:%M") %></p>
             <p class="blog-post-meta"><span style="font-weight:bold">Where</span>: <%=@events.venue%></p>
             <blockquote>
              <%=@events.description %>
             </blockquote>
+            <% end %>
