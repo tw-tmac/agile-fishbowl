@@ -14,3 +14,5 @@ class User
   end
 
 end
+
+DataMapper.finalize

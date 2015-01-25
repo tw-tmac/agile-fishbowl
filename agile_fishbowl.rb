@@ -36,8 +36,7 @@ enable :sessions, :method_override
 	      params['user'] && params['user']['username'] && params['user']['password']
 	    end
 
-	    def authenticate!
-	    	
+	    def authenticate!	
 	      user = User.first(username: params['user']['username'])
 
 	      if user.nil?
@@ -52,7 +51,30 @@ enable :sessions, :method_override
 
 
 	get '/' do
+	  @events = Event.first(:date.gt => DateTime.now, :order => [ :date.asc ])
 	  erb :index
+	end
+
+	get '/subscribe' do
+		erb :subscription
+	end
+
+	post '/subscribe/add' do
+		
+		sub = Subscription.first(:email => params['email'])
+		if(sub.nil?)
+			@subscription = Subscription.new(params)
+ 			 if @subscription.save
+ 			 	flash[:notice] = "You have been added to our mailing list"
+ 			 	redirect '/admin' 
+ 			 else
+ 			    flash[:error] = "Uh oh, something went wrong!"
+ 			 	redirect '/subscribe'
+ 			 end
+ 		else
+			flash[:error] = "You already have a subscription"
+			redirect '/subscribe'
+ 		end
 	end
 
 	post '/auth/login' do
@@ -89,7 +111,7 @@ enable :sessions, :method_override
  			 	flash[:notice] = "Event has been added"
  			 	redirect '/admin' 
  			 else
- 			    flash[:notice] = "Uh oh, something went wrong!"
+ 			    flash[:error] = "Uh oh, something went wrong!"
  			 	redirect '/admin/event'
  			 end
  		else
@@ -113,7 +135,7 @@ enable :sessions, :method_override
 		  	flash[:notice] = "Event has been edited"
 		    redirect "/admin"
 		  else
-		  	flash[:notice] = "Uh oh, something went wrong!"
+		  	flash[:error] = "Uh oh, something went wrong!"
 		    redirect "/admin/event/#{id}/edit" 
 		  end
  	end

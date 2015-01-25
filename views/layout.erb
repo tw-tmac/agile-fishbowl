@@ -47,13 +47,13 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="#about">Subscribe</a></li>
+            <li><a href="/subscribe">Subscribe</a></li>
           <% if env['warden'].authenticated? %>  
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/admin">Manage events</a></li>
-                <li><a href="#">Manage subscribtions</a></li>
+                <!-- <li><a href="#">Manage subscribtions</a></li> -->
               </ul>
             </li>
           <% end %>
@@ -76,9 +76,9 @@
 
       </div>
       <% if flash[:error] %>
-      <div id="flash" style="color:red;">
-        <%= flash[:error] %>
-      </div>
+        <div id="flash" style="color:red;"><%= flash[:error] %></div>
+      <%else%>
+        <div id="flash" style="color:green;"><%= flash[:notice] %></div>
     <% end %>
     </nav>
     <div class="container">
@@ -89,20 +89,20 @@
           <div class="blog-post">
             <%= yield %>
           </div><!-- /.blog-post -->
-          <nav>
+         <!--  <nav>
             <ul class="pager">
               <li><a href="#">Previous</a></li>
               <li><a href="#">Next</a></li>
             </ul>
-          </nav>
+          </nav> -->
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <p>GeekNights are part of Thoughtwork's history as an effective means of reaching a wider audience with our mission and values. Participating and perhaps leading is a great way to discover and learn things that you did not even realize were important.</p>
           </div>
-          <div class="sidebar-module">
+          <!-- <div class="sidebar-module">
             <h4>Archives</h4>
             <ol class="list-unstyled">
               <li><a href="#">March 2014</a></li>
@@ -126,7 +126,7 @@
               <li><a href="#">Twitter</a></li>
               <li><a href="#">Facebook</a></li>
             </ol>
-          </div>
+          </div> -->
         </div><!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
@@ -148,16 +148,13 @@
     <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
     <script type="text/javascript">
       tinymce.init({
-          selector: "textarea#description" <% if !@event.nil? %>,
-          init_instance_callback : function() { tinyMCE.activeEditor.setContent('<%= @event.description%>');}
+          selector: "#description" <% if !@event.nil? %>,
+          init_instance_callback : function() { tinyMCE.activeEditor.setContent('<%=@event.description%>');}
     <% end %>
        });
     </script>
 
     <script src="/js/jquery.datetimepicker.js"></script>
-   
-
-
     <script>
   
     $(document).ready(function() {

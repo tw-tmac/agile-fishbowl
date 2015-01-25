@@ -1,3 +1,6 @@
+<br/>
+<button id="add" type="submit" onclick="window.location.href='/admin/event'">Add New Event</button>
+<br/>
 <% @events.each do |event| %>
 
 	<h2 class="blog-post-title"><%= event.venue %></h2>
@@ -12,5 +15,3 @@
 	</div>
 
 <% end %>
-
-<button id="add" type="submit" onclick="window.location.href='/admin/event'">Add New Event</button>

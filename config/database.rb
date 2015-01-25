@@ -20,3 +20,4 @@ end
 
 require File.expand_path('../models/user', File.dirname(__FILE__))
 require File.expand_path('../models/event', File.dirname(__FILE__))
+require File.expand_path('../models/subscription', File.dirname(__FILE__))

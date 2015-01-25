@@ -1,8 +1,7 @@
 <% if @event.nil? %>
 	<h2 class="blog-post-title">Add new event</h2>
 <div>
-		
-			<form name="event" action="/admin/event/add" method="post" >
+		<form name="event" action="/admin/event/add" method="post" >
 		<p style="font-weight: bold;">
 			Date: <input type="text" name="date" id="date" size="15"/>
 		</p>
@@ -10,9 +9,9 @@
 			Venue: <input type="text" name="venue" size="30"/>
 		</p>
 		<p style="font-weight: bold;">Event description:</p>
-		<p><textarea id="description"></textarea></p>
+		<p><textarea name="description" id="description"></textarea></p>
 		<button id="save" type="submit">Save</button>
-		<button id="cancel" type="submit">Cancel</button>
+		<button id="cancel"><a href="/admin">Cancel</a></button>
 	</form>
 </div>
 <% else %>
@@ -27,7 +26,7 @@
 			Venue: <input type="text" name="venue" size="30" value="<%= @event.venue%>"/>
 		</p>
 		<p style="font-weight: bold;">Event description:</p>
-		<p><textarea id="description"></textarea></p>
+		<p><textarea name="description" id="description"></textarea></p>
 		<button id="save" type="submit">Save</button>
 		<button id="cancel"><a href="/admin">Cancel</a></button>
 	</form>
