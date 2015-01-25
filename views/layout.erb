@@ -146,8 +146,18 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-    <script>tinymce.init({selector:'textarea'});</script>
+    <script type="text/javascript">
+      tinymce.init({
+          selector: "textarea#description" <% if !@event.nil? %>,
+          init_instance_callback : function() { tinyMCE.activeEditor.setContent('<%= @event.description%>');}
+    <% end %>
+       });
+    </script>
+
     <script src="/js/jquery.datetimepicker.js"></script>
+   
+
+
     <script>
   
     $(document).ready(function() {

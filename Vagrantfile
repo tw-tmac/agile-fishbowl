@@ -10,6 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     config.vm.network "forwarded_port", guest: 9393, host: 9393, host_ip: "127.0.0.1"
+    config.vm.network "forwarded_port", guest: 9292, host: 9292, host_ip: "127.0.0.1"
 
     config.vm.provision "ansible" do |ansible|
         ansible.host_key_checking = false

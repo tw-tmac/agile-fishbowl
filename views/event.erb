@@ -1,15 +1,35 @@
-<h2 class="blog-post-title">Add new event</h2>
+<% if @event.nil? %>
+	<h2 class="blog-post-title">Add new event</h2>
 <div>
-<form name="event" action="/admin/event/add" method="post" >
-	<p style="font-weight: bold;">
-		Date: <input type="text" name="date" id="date" size="15"/> @ <input type="text" id="time" size="15"/> (hh:mm)
-	</p>
-	<p style="font-weight: bold;">
-		Venue: <input type="text" name="venue" size="30"/>
-	</p>
-	<p style="font-weight: bold;">Event description:</p>
-	<p><textarea name="description"></textarea></p>
-	<button id="save" type="submit">Save</button>
-	<button id="cancel" type="submit">Cancel</button>
-</form>
+		
+			<form name="event" action="/admin/event/add" method="post" >
+		<p style="font-weight: bold;">
+			Date: <input type="text" name="date" id="date" size="15"/>
+		</p>
+		<p style="font-weight: bold;">
+			Venue: <input type="text" name="venue" size="30"/>
+		</p>
+		<p style="font-weight: bold;">Event description:</p>
+		<p><textarea id="description"></textarea></p>
+		<button id="save" type="submit">Save</button>
+		<button id="cancel" type="submit">Cancel</button>
+	</form>
 </div>
+<% else %>
+	<h2 class="blog-post-title">Edit event</h2>
+	<div>
+			<form name="event" action="/admin/event/<%=@event.id%>" method="post" >
+			<input type="hidden" name="_method" value="put"/>
+		<p style="font-weight: bold;">
+			Date: <input type="text" name="date" id="date" size="15" value="<%=@event.date%>"/>
+		</p>
+		<p style="font-weight: bold;">
+			Venue: <input type="text" name="venue" size="30" value="<%= @event.venue%>"/>
+		</p>
+		<p style="font-weight: bold;">Event description:</p>
+		<p><textarea id="description"></textarea></p>
+		<button id="save" type="submit">Save</button>
+		<button id="cancel"><a href="/admin">Cancel</a></button>
+	</form>
+</div>
+<% end %>

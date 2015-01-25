@@ -4,11 +4,12 @@ Bundler.require
 
 require './config/database'
 
-enable :sessions
+enable :sessions, :method_override
 
  class AgileFishbowl < Sinatra::Base
 
  	register Sinatra::Flash
+
 	
 	#set security
 	set :sessions, key: 'N&wedhSDF',
@@ -82,18 +83,39 @@ enable :sessions
  	end
 
  	post '/admin/event/add' do
-
  		if env['warden'].authenticated?
 			@event = Event.new(params)
  			 if @event.save
- 			 	redirect '/admin', :notice => "Event has been added"
+ 			 	flash[:notice] = "Event has been added"
+ 			 	redirect '/admin' 
  			 else
- 			 	redirect '/admin/event', :notice => "Uh oh, something went wrong!"
+ 			    flash[:notice] = "Uh oh, something went wrong!"
+ 			 	redirect '/admin/event'
  			 end
  		else
  			flash[:error] = "Please login"
  			redirect '/'
  		end
+ 	end
+
+ 	get '/admin/event/:id/edit' do |id|
+ 		if env['warden'].authenticated?
+ 			@event = Event.get!(id)
+ 			erb :event
+ 		end
+ 	end
+
+ 	put '/admin/event/:id' do | id |
+		event = Event.get!(id)
+		  success = event.update!(venue: params['venue'], description: params['description'], date: params['date'])
+		  
+		  if success
+		  	flash[:notice] = "Event has been edited"
+		    redirect "/admin"
+		  else
+		  	flash[:notice] = "Uh oh, something went wrong!"
+		    redirect "/admin/event/#{id}/edit" 
+		  end
  	end
 
  	get '/admin' do
