@@ -61,10 +61,10 @@
           <div <% if env['warden'].authenticated? %>style="display:none"<% end %>>
             <form name="login" class="navbar-form navbar-right" action="/auth/login" method="post" >
               <div class="form-group" >
-                <input name="user[username]" type="text" placeholder="Username" class="form-control">
+                <input name="username" type="text" placeholder="Username" class="form-control">
               </div>
               <div class="form-group">
-                <input name="user[password]" type="password" placeholder="Password" class="form-control">
+                <input name="password" type="password" placeholder="Password" class="form-control">
               </div>
               <button type="submit" class="btn btn-success">Sign in</button>
             </form>

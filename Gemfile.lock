@@ -130,6 +130,7 @@ DEPENDENCIES
   dm-types
   pg
   puma
+  rack-test
   rake
   rspec
   shotgun
