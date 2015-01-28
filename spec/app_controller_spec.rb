@@ -10,6 +10,8 @@ describe 'AppController' do
 
     it "displays hompage content" do
       get '/'
+      #Scene 1, act 1, story #4, uncomment this line to fail the test and build
+      #expect(last_response.body).to include("fail!")
       expect(last_response.body).to include("The next upcoming geek night is on")
     end
   end

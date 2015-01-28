@@ -10,7 +10,7 @@ enable :sessions, :method_override
 
  	register Sinatra::Flash
 
-	
+
 	#set security
 	set :sessions, key: 'N&wedhSDF',
 	  expire_after: 14400,
@@ -36,7 +36,7 @@ enable :sessions, :method_override
 	      params['username'] && params['password']
 	    end
 
-	    def authenticate!	
+	    def authenticate!
 	      user = User.first(username: params['username'])
 
 	      if user.nil?
@@ -51,7 +51,10 @@ enable :sessions, :method_override
 
 
 	get '/' do
-	  @events = Event.first(:date.gt => DateTime.now, :order => [ :date.asc ])
+    #Remove this line to complete story #5
+	  @events = nil
+    #Uncomment this line to complete story #5
+    #@events = Event.first(:date.gt => DateTime.now, :order => [ :date.asc ])
 	  erb :index
 	end
 
@@ -60,13 +63,13 @@ enable :sessions, :method_override
 	end
 
 	post '/subscribe/add' do
-		
+
 		sub = Subscription.first(:email => params['email'])
 		if(sub.nil?)
 			@subscription = Subscription.new(params)
  			 if @subscription.save
  			 	flash[:notice] = "You have been added to our mailing list"
- 			 	redirect '/admin' 
+ 			 	redirect '/admin'
  			 else
  			    flash[:error] = "Uh oh, something went wrong!"
  			 	redirect '/subscribe'
@@ -91,13 +94,14 @@ enable :sessions, :method_override
 
 	post '/auth/unauthenticated' do
 	    session[:return_to] = env['warden.options'][:attempted_path] if session[:return_to].nil?
-	    flash[:error] = "Invalid username or password"
+	    #comment line below to fail story #1
+      flash[:error] = "Invalid username or password"
 	    redirect '/'
  	end
 
  	get '/admin/event' do
  		if env['warden'].authenticated?
- 			erb :event
+ 			#erb :event
  		else
  			flash[:error] = "Please login"
  			redirect '/'
@@ -109,7 +113,7 @@ enable :sessions, :method_override
 			@event = Event.new(params)
  			 if @event.save
  			 	flash[:notice] = "Event has been added"
- 			 	redirect '/admin' 
+ 			 	redirect '/admin'
  			 else
  			    flash[:error] = "Uh oh, something went wrong!"
  			 	redirect '/admin/event'
@@ -130,13 +134,13 @@ enable :sessions, :method_override
  	put '/admin/event/:id' do | id |
 		event = Event.get!(id)
 		  success = event.update!(venue: params['venue'], description: params['description'], date: params['date'])
-		  
+
 		  if success
 		  	flash[:notice] = "Event has been edited"
 		    redirect "/admin"
 		  else
 		  	flash[:error] = "Uh oh, something went wrong!"
-		    redirect "/admin/event/#{id}/edit" 
+		    redirect "/admin/event/#{id}/edit"
 		  end
  	end
 

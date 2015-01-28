@@ -1,6 +1,10 @@
             <h2 class="blog-post-title">The next upcoming geek night is on...</h2>
             <% if !@events.nil? %>
             <p class="blog-post-meta"><%=@events.date.strftime("%B %d, %Y @ %H:%M") %></p>
+            <br/>
+            <!-- Uncomment this line to complete story #3-->
+            <!-- <div><img src="/img/geeknight.jpg" height="50%" width="50%"/></div> -->
+            <br/>
             <p class="blog-post-meta"><span style="font-weight:bold">Where</span>: <%=@events.venue%></p>
             <blockquote>
              <%=@events.description %>

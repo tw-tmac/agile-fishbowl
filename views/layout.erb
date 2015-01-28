@@ -17,7 +17,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/jumbotron.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-  
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,9 +31,9 @@
   <body>
         <!-- Fixed navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
-    
+
       <div class="container">
-      
+
         <div class="navbar-header">
 
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -48,7 +48,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/subscribe">Subscribe</a></li>
-          <% if env['warden'].authenticated? %>  
+          <% if env['warden'].authenticated? %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -58,7 +58,8 @@
             </li>
           <% end %>
           </ul>
-          <div <% if env['warden'].authenticated? %>style="display:none"<% end %>>
+          <!-- Uncomment this block to pass story #1 -->
+          <!-- <div <% if env['warden'].authenticated? %>style="display:none"<% end %>>
             <form name="login" class="navbar-form navbar-right" action="/auth/login" method="post" >
               <div class="form-group" >
                 <input name="username" type="text" placeholder="Username" class="form-control">
@@ -71,12 +72,13 @@
           </div>
           <% if env['warden'].authenticated? %>
             <div class="navbar-form navbar-right"><button onclick="window.location.href='/logout'" class="btn btn-success">Sign off</button></div>
-          <% end %>
+          <% end %> -->
         </div><!--/.nav-collapse -->
 
       </div>
       <% if flash[:error] %>
-        <div id="flash" style="color:red;"><%= flash[:error] %></div>
+      <!-- Leave line below uncommented line below to fail story #1 -->
+        <!-- <div id="flash" style="color:red;"><%= flash[:error] %></div> -->
       <%else%>
         <div id="flash" style="color:green;"><%= flash[:notice] %></div>
     <% end %>
@@ -153,9 +155,14 @@
 
     <script src="/js/jquery.datetimepicker.js"></script>
     <script>
-  
+
     $(document).ready(function() {
-      jQuery('#date').datetimepicker();
+      //Uncomment this line to fail story #4
+      //jQuery('#date').datetime();
+
+      //Uncomment this line to complete story #4
+      //jQuery('#date').datetimepicker();
+
       if ($("#flash").length) {
         // Hide the flash in a few seconds
         setTimeout(function() {
