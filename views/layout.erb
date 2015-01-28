@@ -59,7 +59,7 @@
           <% end %>
           </ul>
           <!-- Uncomment this block to pass story #1 -->
-          <!-- <div <% if env['warden'].authenticated? %>style="display:none"<% end %>>
+         <div <% if env['warden'].authenticated? %>style="display:none"<% end %>>
             <form name="login" class="navbar-form navbar-right" action="/auth/login" method="post" >
               <div class="form-group" >
                 <input name="username" type="text" placeholder="Username" class="form-control">
@@ -72,13 +72,13 @@
           </div>
           <% if env['warden'].authenticated? %>
             <div class="navbar-form navbar-right"><button onclick="window.location.href='/logout'" class="btn btn-success">Sign off</button></div>
-          <% end %> -->
+          <% end %>
         </div><!--/.nav-collapse -->
 
       </div>
       <% if flash[:error] %>
       <!-- Leave line below uncommented line below to fail story #1 -->
-        <!-- <div id="flash" style="color:red;"><%= flash[:error] %></div> -->
+       <div id="flash" style="color:red;"><%= flash[:error] %></div>
       <%else%>
         <div id="flash" style="color:green;"><%= flash[:notice] %></div>
     <% end %>
