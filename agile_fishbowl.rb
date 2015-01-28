@@ -101,7 +101,7 @@ enable :sessions, :method_override
 
  	get '/admin/event' do
  		if env['warden'].authenticated?
- 			#erb :event
+ 			erb :event
  		else
  			flash[:error] = "Please login"
  			redirect '/'
