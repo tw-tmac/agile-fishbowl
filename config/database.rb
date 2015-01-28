@@ -9,13 +9,17 @@ require 'dm-aggregates'
 ENV['RACK_ENV'] ||= 'development'
 
 configure :production do
-	DataMapper.setup(:default, ENV['DATABASE_URL'])	
+	DataMapper.setup(:default, ENV['DATABASE_URL'])
 end
 
 configure :development, :test do
-	settings = YAML::load_file('config/database.yml')
-	conn_string = settings[ENV['RACK_ENV']]
-	DataMapper.setup(:default, conn_string)
+  if ENV['SNAP_CI']
+    DataMapper.setup(:default, ENV['SNAP_DB_PG_URL_ALT'])
+  else
+    settings = YAML::load_file('config/database.yml')
+    conn_string = settings[ENV['RACK_ENV']]
+    DataMapper.setup(:default, conn_string)
+  end
 end
 
 require File.expand_path('../models/user', File.dirname(__FILE__))
