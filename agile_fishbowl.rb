@@ -51,10 +51,7 @@ enable :sessions, :method_override
 
 
 	get '/' do
-    #Remove this line to complete story #5
-	  @events = nil
-    #Uncomment this line to complete story #5
-    #@events = Event.first(:date.gt => DateTime.now, :order => [ :date.asc ])
+    @events = Event.first(:date.gte => DateTime.now, :order => [ :date.asc ])
 	  erb :index
 	end
 
@@ -94,7 +91,6 @@ enable :sessions, :method_override
 
 	post '/auth/unauthenticated' do
 	    session[:return_to] = env['warden.options'][:attempted_path] if session[:return_to].nil?
-	    #comment line below to fail story #1
       flash[:error] = "Invalid username or password"
 	    redirect '/'
  	end

@@ -53,7 +53,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/admin">Manage events</a></li>
-                <!-- <li><a href="#">Manage subscribtions</a></li> -->
+                 <li><a href="#">Manage subscribtions</a></li>
               </ul>
             </li>
           <% end %>
@@ -77,7 +77,6 @@
 
       </div>
       <% if flash[:error] %>
-      <!-- Leave line below uncommented line below to fail story #1 -->
        <div id="flash" style="color:red;"><%= flash[:error] %></div>
       <%else%>
         <div id="flash" style="color:green;"><%= flash[:notice] %></div>
@@ -148,11 +147,7 @@
     <script>
 
     $(document).ready(function() {
-      //Uncomment this line to fail story #4
-      //jQuery('#date').datetime();
-
-      //Uncomment this line to complete story #4
-      //jQuery('#date').datetimepicker();
+      jQuery('#date').datetimepicker();
 
       if ($("#flash").length) {
         // Hide the flash in a few seconds

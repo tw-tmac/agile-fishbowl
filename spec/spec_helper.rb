@@ -1,4 +1,6 @@
-#ENV['RACK_ENV'] = 'test'
+if ENV['SNAP_CI']
+  ENV['RACK_ENV'] = 'test'
+end
 
 require 'sinatra'
 require "sinatra/base"

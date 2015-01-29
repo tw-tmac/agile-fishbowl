@@ -3,9 +3,3 @@ development:
   host: localhost
   username: twer
   database: agile-fishbowl
-
-test:
-  adapter: postgres
-  host: localhost
-  username: twer
-  database: agile-fishbowl-test
